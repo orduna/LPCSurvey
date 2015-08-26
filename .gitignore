@@ -1,0 +1,9 @@
+# ignore non-text files
+*.gif
+*.png
+*.db
+
+# other files to be ignored
+.htaccess
+robots.txt
+
