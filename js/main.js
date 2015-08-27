@@ -138,6 +138,8 @@ function extraInfo()
     if((tem= ua.match(/version\/(\d+)/i))!= null) M.splice(1, 1, tem[1]);
     message += "<br><b>Web browser:</b> ";
     message +=  M.join(' ');
+    // Simple version of update message
+    message = d.toString();
     return message;
 }
 
