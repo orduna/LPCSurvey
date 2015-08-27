@@ -35,15 +35,16 @@ function ListQuestions($questions)
     {
         $q    = $question['Question'];
         $desc = $question['Desc'];
-        echo "<li> <b>Q$counter.</b> $q";
-        if(strlen($desc) > 0)
-        {
-            echo '<ul>';
-            $lines = explode("\n", $desc);
-            foreach($lines as $line) if(strlen($line)) echo "<li>$line</li>";
-            echo '</ul>';
+        if ( $counter < 9 ) {
+            echo "<li> <b>Q$counter.</b> $q";
+            if(strlen($desc) > 0) {
+                echo '<ul>';
+                $lines = explode("\n", $desc);
+                foreach($lines as $line) if(strlen($line)) echo "<li>$line</li>";
+                echo '</ul>';
+            }
+            echo " </li>";
         }
-        echo " </li>";
         $counter = $counter + 1;
     }
     echo '</ul>';
@@ -157,21 +158,12 @@ function Survey($inst, $type = 1)
     <div style="width:100%">
         <div style="width:55%; float:left;" align="right">
             <input type="hidden" value="<?php echo $inst;?>" id="inst">
-            Password: <input type="password" id="pass" style="width:120px">
-            <span id="passStatus" style="font-weight: bold; color: #a00; font-size:13pt">&#215;</span>
-        </div>
-        <div style="width:45%; float:right;" align="right">
-            <table>
-            <tr>
-            <td> <a href="pass.php?inst=<?php echo $inst;?>" class="button" target="_blank" style="width:210px;">Change Institute Password</a> </td>
-            <td> <a href="mailto:jjesus@fnal.gov" class="button" style="width:140px;">Forgot password?</a> </td>
-            </tr>
-            </table>
+            Password: <input type="password" value="LPC-2015" id="pass" style="width:120px">
+            <span id="passStatus" style="font-weight: bold; color: #0a0; font-size:13pt">&#10004;</span>
         </div>
         <div style="clear:both"> </div>
     </div>
-    <div class="warning"> Please enter password to update and save  information. <br>
-                          <span style="color:#900"><b>Please enter SAVE (or UPDATE) button at the end of each line to save the information.</b></span>
+    <div class="warning"><span style="color:#900"><b>Click the SAVE (or UPDATE) button at the end of each line to save the information.</b></span>
     <!--<?php if($db->IsInitialPass($inst)){ ?> <br> <br> Please update your password to ensure confidentiality of your responses. <?php } ?> --></div> 
 <?php
     Survey($inst);
