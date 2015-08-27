@@ -147,8 +147,7 @@ function Save(id)
 {
     if(semaphore) return;
 
-    if(!PassCheck())
-    {
+    if(!PassCheck()) {
         return;
     }
 
@@ -165,22 +164,22 @@ function Save(id)
     answers[9] = extraInfo();
     dict['answers'] = answers;
     Post(dict);
-    confirm('Saved the changes for ' + name + '.');
-    location.reload();
-    //console.log(dict);
+    console.log('Saved the changes for ' + name + '. Now will sleep for a second while waiting for the DB to complete update and then reload the page.');
+    setTimeout(function(){
+        location.reload();
+    }, 1000);
 }
 
 function Add()
 {
     if($('#fname').val() == '' || $('#lname').val() == '') return;
 
-    if(!PassCheck())
-    {
+    if(!PassCheck()) {
         alert('The password you entered is incorrect.');
         return;
     }
 
-    if(!confirm('Page will be refreshed! Your changes which are not saved will be lost! Are you sure to continue?')) return;
+    //if(!confirm('Page will be refreshed! Your changes which are not saved will be lost! Are you sure to continue?')) return;
 
     currentId = 'new';
 
@@ -197,6 +196,10 @@ function Add()
     dict['lastName']  = $('#lname').val();
     console.log(dict);
     Post(dict);
+    console.log('Added new user ' + name + '. Now will sleep for a second while waiting for the DB to complete update and then reload the page.');
+    setTimeout(function(){
+        location.reload();
+    }, 1000);
 }
 
 $(function() {
