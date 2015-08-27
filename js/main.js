@@ -160,7 +160,7 @@ function Save(id)
         if($(this).val() == "" || $(this).val() == " ") return;
         answers[$(this).attr('name')] = $(this).val();
     });
-    answers[9] = osName();
+    answers[9] = extraInfo();
     dict['answers'] = answers;
     Post(dict);
     confirm('Saved the changes for ' + name + '.');
@@ -189,7 +189,7 @@ function Add()
         if($(this).attr('id') == 'lname' || $(this).attr('id') == 'fname') return;
         answers[$(this).attr('name')] = $(this).val();
     });
-    answers[9] = osName();
+    answers[9] = extraInfo();
     dict['answers'] = answers;
     dict['firstName'] = $('#fname').val();
     dict['lastName']  = $('#lname').val();
