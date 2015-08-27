@@ -27,7 +27,7 @@ function ListInstitutes()
     if(!in_array($inst, $names)) $inst = false;
 }
 
-function istQuestions($questions)
+function ListQuestions($questions)
 {
     echo '<ul class="questions">';
     $counter = 1;
