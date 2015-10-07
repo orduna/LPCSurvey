@@ -53,7 +53,6 @@ function Survey($inst, $type = 1)
     global $db;
     $questions = $db->GetQuestions(false, $type);
     $persons   = $db->GetPersons($inst, $type);
-    $mtimeDB   = $db->GetDBTime(); // Orduna
 
     ListQuestions($questions);
 
@@ -152,8 +151,8 @@ function Survey($inst, $type = 1)
     <table style="none">
     <tr>
     <td> <input type="hidden" value="<?php echo $inst;?>" id="inst">
-    Password: <input type="password" value="LPC-2015" id="pass" style="width:120px"> </td>
-    <td> <a href="pass.php?inst=<?php echo $inst;?>" class="button" target="_blank">Change Institute Password</a> </td>
+    Password: <input type="password" value="LPC-2015" id="pass" style="width:120px">
+    <span id="passStatus" style="font-weight: bold; color: #0a0; font-size:13pt">&#10004;</span></td>
     </tr>
     </table>
     <div class="warning"> To edit/update please put password. <br>
