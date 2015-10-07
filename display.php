@@ -136,7 +136,7 @@ function Survey($inst, $type = 1)
     <table style="none">
     <tr>
     <td> <input type="hidden" value="<?php echo $inst;?>" id="inst">
-    Password: <input type="password" id="pass" style="width:120px"> </td>
+    Password: <input type="password" value="LPC-2015" id="pass" style="width:120px"> </td>
     <td> <a href="pass.php?inst=<?php echo $inst;?>" class="button" target="_blank">Change Institute Password</a> </td>
     </tr>
     </table>
