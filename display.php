@@ -63,11 +63,15 @@ function Survey($inst, $type = 1)
     $counter = 1;
     foreach($questions as $question)
     {
-        $title = $question['Title'];
-        echo "\n<th>Q$counter<br>$title</th>";
+        if ( $counter == 9 ) {
+            echo "<th></th><th>Last Update</th>";
+        } else {
+            $title = $question['Title'];
+            echo "\n<th>Q$counter<br>$title</th>";
+        }
         $counter++;
     }
-    echo "<th></th></tr></thead><tbody>";
+    echo "</tr></thead><tbody>";
 
     foreach($persons as $person)
     {
@@ -79,16 +83,23 @@ function Survey($inst, $type = 1)
         echo "<td><b>$NamfCMS $NameCMS</b> <span class=\"AN\">$ActivName</span></td>"; // do not delete b tag. it is used to get name (you can also do better!)
         $questionsP= $db->GetQuestions($PersonId, $type);
         $updateFlag= false;
+        $counter = 1;
         foreach($questionsP as $question)
         {
-            $html =  $question['HTML'];
+            $html = $question['HTML'];
             if(!$updateFlag) $updateFlag = $question['UpdateFlag'];
-            echo "<td>$html</td>";
+            if ($counter < 9) {
+                echo "<td>$html</td>";
+            } else {
+                if(!$updateFlag) {
+                    echo "<td> <a class=\"button\" onclick=\"Save('row$PersonId')\" id=\"button$PersonId\"> Save </a></td>";
+                } else {
+                    echo "<td> <a class=\"button\" onclick=\"Save('row$PersonId')\" id=\"button$PersonId\"> Update </a></td>";
+                }
+                echo "<td>$html</td>";
+            }
+            $counter++;
         }
-        if(!$updateFlag)
-            echo "<td> <a class=\"button\" onclick=\"Save('row$PersonId')\" id=\"button$PersonId\"> Save </a></td>";
-        else
-            echo "<td> <a class=\"button\" onclick=\"Save('row$PersonId')\" id=\"button$PersonId\"> Update </a></td>";
         echo '</tr>';
     }
 
@@ -99,13 +110,18 @@ function Survey($inst, $type = 1)
         echo '<input type="text" placeholder="Last Name" id="lname" style="width:100px"> <br>';
         echo "Institute: <span id=\"institute\">$inst</span>";
         echo '</td>';
+        $counter = 1;
         foreach($questions as $question)
         {
-            $html =  $question['HTML'];
+            $html = $question['HTML'];
             if(!$updateFlag) $updateFlag = $question['UpdateFlag'];
-            echo "<td>$html</td>";
+            if ($counter < 9) {
+                echo "<td>$html</td>";
+            } else {
+                echo '<td> <a class="button" onClick="Add()"> Add New User </a> </td><td></td>';
+            }
+            $counter++;
         }
-        echo '<td> <a class="button" onClick="Add()"> Add New User </a> </td>';
         echo '</tr>';
     }
     echo '</tbody></table>';
